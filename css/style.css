@@ -6,3 +6,10 @@ ul{
   display: block;
 }
 
+.controls{
+  float: right;
+}
+
+#stats p{
+  color: red;
+}

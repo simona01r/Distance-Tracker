@@ -13,8 +13,12 @@ $(document).one('pageinit', function () {
     // Delete Handler
     $('#stats').on('tap', '#deleteLink', deleteRun);
 
+    // clear Handler
+    $('#clearRuns').on('tap', clearRuns);
+
     // Set Current Handler
     $('#stats').on('tap', '#editLink', setCurrent);
+
 
     // Add a run
     function addRun() {
@@ -44,7 +48,7 @@ $(document).one('pageinit', function () {
         return false;
     }
 
-    // edit runs
+    // Edit runs
     function editRun() {
         // get current data
         currentKm = localStorage.getItem('currentKm');
@@ -83,6 +87,40 @@ $(document).one('pageinit', function () {
         return false
     }
 
+    // Delete runs
+    function deleteRun() {
+        // set local storage items
+        localStorage.setItem('currentKm', $(this).data('km'));
+        localStorage.setItem('currentDate', $(this).data('date'));
+
+        // get current data
+        currentKm = localStorage.getItem('currentKm');
+        currentDate = localStorage.getItem('currentDate');
+
+        var runs = getRunsObject();
+
+        // loop through runs
+        for (var i = 0; i < runs.length; i++) {
+            if (runs[i].km == currentKm && runs[i].date == currentDate) {
+                runs.splice(i, 1);
+            }
+            localStorage.setItem('runs', JSON.stringify(runs));
+        }
+
+        alert('Run Deleted');
+
+        // redirect
+        window.location.href = "index.html";
+
+        return false;
+    }
+
+
+    function clearRuns() {
+        localStorage.removeItem('runs');
+        $('#stats').html('<p>You have no logged runs</p>');
+    }
+
 
     // Get the existing runs object
     function getRunsObject() {
@@ -103,6 +141,8 @@ $(document).one('pageinit', function () {
         });
     }
 
+
+    // Show all runs on homepage
     function showRuns() {
         // get runs object
         var runs = getRunsObject();
@@ -125,7 +165,8 @@ $(document).one('pageinit', function () {
         }
     }
 
-    // set the currrent clicked km and date
+
+    // Set the currrent clicked km and date
     function setCurrent() {
         // set local storage items
         localStorage.setItem('currentKm', $(this).data('km'));
