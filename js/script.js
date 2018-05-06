@@ -152,7 +152,7 @@ $(document).one('pageinit', function () {
             for (var i = 0; i < runs.length; i++) {
                 //                         li classes -> are for jQuery mobile user interface (just a style that works corectly)
                 $('#stats').append('<li class="ui-body-inherit ui-li-static"><strong>Date:</strong>' + runs[i]["date"] +
-                        ' <br><strong>Distance: </strong>' + runs[i]["km"] + 'm<div class="controls">' +
+                        ' <br><strong>Distance: </strong>' + runs[i]["km"] + 'Km<div class="controls">' +
                         '<a href="#edit" id="editLink" data-km="' + runs[i]["km"] + '" data-date="' + runs[i]["date"] +
                         '">Edit</a> | <a href="#" id="deleteLink" data-km="' + runs[i]["km"] + '" data-date="' + runs[i]["date"]
                         + '" onclick="return confirm(\'Are You Sure?\')">Delete</a></li>');
